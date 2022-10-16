@@ -1,0 +1,58 @@
+package basic.problems.zoho;
+import java.util.*;
+public class StringArraySorting {
+	
+	Scanner scanner=new Scanner(System.in);
+	int size=scanner.nextInt(); 
+	String[] arr=new String[size];
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringArraySorting strsort=new StringArraySorting();
+		strsort.getValues();
+		strsort.sorting();
+		strsort.printValues();
+	}
+	
+	private void getValues() {
+		scanner.nextLine();
+		for(int itr=0;itr<size;itr++) {
+			arr[itr]=scanner.nextLine();
+		}
+	}
+	
+	private void sorting() {
+		for(int itr=0;itr<size-1;itr++) {
+			for(int iter=0;iter<size-1-itr;iter++) {
+				int temp=0;
+				int len=(arr[iter].length()<arr[iter+1].length())?arr[iter].length():arr[iter+1].length();
+				while(temp<len) {
+					if(arr[iter].charAt(temp)!=arr[iter+1].charAt(temp)) {
+						if(arr[iter].charAt(temp)>arr[iter+1].charAt(temp)) {
+							String ref=arr[iter];
+							arr[iter]=arr[iter+1];
+							arr[iter+1]=ref;
+						}
+						break;
+					}
+					else {
+						if(temp==len-1 && len==arr[iter+1].length()) {
+							String ref=arr[iter];
+							arr[iter]=arr[iter+1];
+							arr[iter+1]=ref;
+							break;
+						}
+					}
+					temp++;
+				}
+			}
+		}
+	}
+	
+	private void printValues() {
+		for(String str:arr) {
+			System.out.print(str+"  ");
+		}
+	}
+
+}
